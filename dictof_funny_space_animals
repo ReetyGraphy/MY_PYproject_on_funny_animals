@@ -1,0 +1,176 @@
+fav = {
+    'tiger': {
+        'name': 'Azura',
+        'age': 7,
+        'occupation': 'Time Traveler',
+        'hobbies': ['Quantum Leaping', 'Astro Surfing', 'Temporal Jamming'],
+        'favorite color': 'Galactic Purple',
+        'favorite food': 'Star Dust Sushi',
+    },
+    'panther': {
+        'name': 'Midnight',
+        'age': 12,
+        'occupation': 'Master of Shadows',
+        'hobbies': ['Night Stalking', 'Stealth Gaming', 'Moonlit Meditation'],
+        'favorite color': 'Shadow Black',
+        'favorite food': 'Moonlit Mocha',
+    },
+    'lion': {
+        'name': 'Aurelia',
+        'age': 107,
+        'occupation': 'Sky Voyager',
+        'hobbies': ['Cloud Dancing', 'Stellar Gazing', 'Aerial Acrobatics'],
+        'favorite color': 'Celestial Blue',
+        'favorite food': 'Cosmic Pasta',
+    },
+    'leopard': {
+        'name': 'Zephyr',
+        'age': 80,
+        'occupation': 'Nature Artist',
+        'hobbies': ['Rainbow Painting', 'Wind Whispering', 'Sunset Serenades'],
+        'favorite color': 'Breezy Yellow',
+        'favorite food': 'Ethereal Ice Cream',
+    },
+    'cheetah': {
+        'name': 'Blaze',
+        'age': 45,
+        'occupation': 'Time Bender',
+        'hobbies': ['Time Warping', 'Flame Dancing', 'Chrono Crafting'],
+        'favorite color': 'Temporal Red',
+        'favorite food': 'Time Travelers Pizza',
+    },
+    'wolf': {
+        'name': 'Lumina',
+        'age': 67,
+        'occupation': 'Moonlight Maestro',
+        'hobbies': ['Lunar Howling', 'Stardust Scribing', 'Astral Rhapsody'],
+        'favorite color': 'Luminous Silver',
+        'favorite food': 'Galaxy Cake',
+    },
+}
+# Function to display the content of a dictionary, if available
+def people(names):
+    if names in fav:
+        available = fav[names]
+        for key, value in available.items():
+            print(f"{key}: {value}")
+    else:
+        print(f"Dictionary '{names}' not found!")
+
+# Function to view the content of a specific key in the selected internal dictionary
+def view_internal_dictionary(names):
+    if names in fav:
+        # Get the internal dictionary associated with the provided name
+        available = fav[names]
+
+        while True:
+            # List of keys available for viewing in the internal dictionary
+            keys = ["name", "age", "occupation", "hobbies", "favorite colour", "favorite food"]
+
+            print("Available keys:")
+            # Display the available keys for the user to choose from
+            for key in keys:
+                print(key)
+
+            # Prompt the user to enter the key they want to view
+            key_to_view = input("Enter the key you want to view (or 'back' to go back to the main menu): ")
+            if key_to_view == 'back':
+                # If the user enters 'back', break the loop and return to the main menu
+                break
+
+            # Check if the provided key exists in the internal dictionary
+            value = available.get(key_to_view)
+            if value is not None:
+                # If the key exists, display the key and its value
+                print('-----------------------')
+                print(f"{key_to_view}: {value}")
+                print('-----------------------')
+            else:
+                # If the key does not exist, notify the user
+                print(f"Key '{key_to_view}' not found in '{names}'.")
+
+    else:
+        # If the provided dictionary name does not exist, notify the user
+        print(f"Dictionary '{names}' not found!")
+
+# Function to update the values of a specific key in the selected internal dictionary
+def update_dictionary_values(names):
+    if names in fav:
+        # Get the internal dictionary associated with the provided name
+        available = fav[names]
+
+        print("Current values:")
+        # Display the current key-value pairs in the internal dictionary
+        for key, value in available.items():
+            print(f"{key}: {value}")
+
+        while True:
+            # Prompt the user to enter the key they want to update or 'done' to finish updating
+            key_to_update = input("Enter the key you want to update (or 'done' to finish updating): ")
+            if key_to_update == 'done':
+                # If the user enters 'done', break the loop and return to the main menu
+                break
+
+            # Check if the provided key exists in the internal dictionary
+            if key_to_update in available:
+                # If the key exists, prompt the user to enter the new value for the key
+                new_value = input(f"Enter the new value for '{key_to_update}': ")
+                # Update the value of the key in the internal dictionary
+                available[key_to_update] = new_value
+                # Confirm to the user that the key has been updated with the new value
+                print(f"Updated '{key_to_update}' with new value '{new_value}'.")
+            else:
+                # If the key does not exist, notify the user
+                print(f"Key '{key_to_update}' not found in '{names}'.")
+
+    else:
+        # If the provided dictionary name does not exist, notify the user
+        print(f"Dictionary '{names}' not found!")
+
+# Main function that allows user interaction
+def main():
+    while True:
+        print("Available dictionaries:")
+        # Display the names of the available dictionaries for the user to choose from
+        for names in fav.keys():
+            print(names)
+
+        # Prompt the user to enter the name of the dictionary they want to interact with or 'exit' to quit
+        user_input = input("Enter the name of the dictionary you want to interact with (or 'exit' to quit): ").lower()
+
+        if user_input == 'exit':
+            # If the user enters 'exit', break the loop and end the program
+            break
+
+        if user_input in fav:
+            while True:
+                print(f"You are now interacting with '{user_input}'.")
+                print("Available commands:")
+                # Display the available commands for the user to choose from
+                print("1. view - to view contents")
+                print("2. update - to update values")
+                print("3. back - to go back to the main menu")
+
+                # Prompt the user to enter a command
+                command = input("Enter a command: ")
+
+                if command == 'view':
+                    # Call the view_internal_dictionary function to view contents
+                    view_internal_dictionary(user_input)
+                elif command == 'update':
+                    # Call the update_dictionary_values function to update values
+                    update_dictionary_values(user_input)
+                elif command == 'back':
+                    # Go back to the main menu
+                    break
+                else:
+                    # If the user enters an invalid command, notify them and prompt again
+                    print("Invalid command. Please try again.")
+
+        else:
+            # If the provided dictionary name does not exist, notify the user
+            print(f"Dictionary '{user_input}' not found!")
+
+# Entry point of the program
+if __name__ == "__main__":
+    main()
