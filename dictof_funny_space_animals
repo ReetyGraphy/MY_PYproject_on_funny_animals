@@ -48,6 +48,8 @@ fav = {
         'favorite food': 'Galaxy Cake',
     },
 }
+
+
 # Function to display the content of a dictionary, if available
 def people(names):
     if names in fav:
@@ -56,6 +58,7 @@ def people(names):
             print(f"{key}: {value}")
     else:
         print(f"Dictionary '{names}' not found!")
+
 
 # Function to view the content of a specific key in the selected internal dictionary
 def view_internal_dictionary(names):
@@ -93,6 +96,7 @@ def view_internal_dictionary(names):
         # If the provided dictionary name does not exist, notify the user
         print(f"Dictionary '{names}' not found!")
 
+
 # Function to update the values of a specific key in the selected internal dictionary
 def update_dictionary_values(names):
     if names in fav:
@@ -126,6 +130,7 @@ def update_dictionary_values(names):
     else:
         # If the provided dictionary name does not exist, notify the user
         print(f"Dictionary '{names}' not found!")
+
 
 # Main function that allows user interaction
 def main():
@@ -170,6 +175,7 @@ def main():
         else:
             # If the provided dictionary name does not exist, notify the user
             print(f"Dictionary '{user_input}' not found!")
+
 
 # Entry point of the program
 if __name__ == "__main__":
